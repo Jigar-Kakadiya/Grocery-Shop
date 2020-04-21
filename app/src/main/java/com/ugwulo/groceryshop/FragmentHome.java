@@ -1,6 +1,7 @@
 package com.ugwulo.groceryshop;
 
 
+import android.content.ClipData;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,7 +21,10 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM = "name";
     Button submitButton;
     NavController navController;
-    Item price1, price2, item1, item2 ;
+    int price1 , price2;
+    String item1, item2;
+
+    EditText editPrice1, editPrice2, editItem1, editItem2;
     public FragmentHome() {}
 
 
@@ -33,10 +37,10 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        price1 = (Item) view.findViewById(R.id.price1);
-//        price2 = view.findViewById(R.id.price2);
-//        item1 = view.findViewById(R.id.item1);
-//        item2 = view.findViewById(R.id.item2);
+        editPrice1 = view.findViewById(R.id.price1);
+        editPrice2 = view.findViewById(R.id.price2);
+        editItem1 = view.findViewById(R.id.item1);
+        editItem2 = view.findViewById(R.id.item2);
         navController = Navigation.findNavController(view);
         submitButton = view.findViewById(R.id.submit_btn);
         submitButton.setOnClickListener(this);
@@ -45,10 +49,24 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         Bundle bundle = new Bundle();
-        bundle.putString("name", "Ugwulo");
-        Navigation.findNavController(view).navigate(R.id.action_fragmentHome_to_orderFragment, bundle);
+        bundle.putString("item1", "Carrot");
+        bundle.putString("item2", "Carrot");
+        bundle.putInt("price1", 45);
+        bundle.putInt("price2", 45);
+//        Navigation.findNavController(view).navigate(R.id.action_fragmentHome_to_orderFragment, bundle);
 
-       FragmentHomeDirections.ActionFragmentHomeToOrderFragment action = FragmentHomeDirections.actionFragmentHomeToOrderFragment(price1,  price2,  item1, item2);
+        item1 = editItem1.getText().toString();
+        item2 = editItem2.getText().toString();
+        price1 = Integer.parseInt(editPrice1.getText().toString());
+        price2 = Integer.parseInt(editPrice2.getText().toString());
+
+       FragmentHomeDirections.ActionFragmentHomeToOrderFragment action = new FragmentHomeDirections.actionFragmentHomeToOrderFragment();
+
+
        Navigation.findNavController(view).navigate(action);
+       submitButton.setOnClickListener(
+              // Navigation.findNavController(view).navigate(R.id.action_fragmentHome_to_orderFragment, bundle)
+               Navigation.createNavigateOnClickListener(R.id.action_fragmentHome_to_orderFragment)
+       );
     }
 }

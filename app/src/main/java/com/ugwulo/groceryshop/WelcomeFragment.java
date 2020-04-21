@@ -28,6 +28,10 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         View view =  inflater.inflate(R.layout.fragment_welcome, container, false);
+
+        loginButton = view.findViewById(R.id.buttonLogin);
+        email = view.findViewById(R.id.editPassword);
+        password = view.findViewById(R.id.editEmail);
         return view;
     }
 
@@ -36,20 +40,23 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        String userEmail = email.getText().toString();
+        String userPassword = password.getText().toString();
         controller = Navigation.findNavController(view);
-
-        //view.findViewById(R.id.buttonLogin).setOnClickListener(this);
 
         view.findViewById(R.id.button_create_account).setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_welcomeFragment_to_signupFragment)
         );
-        view.findViewById(R.id.buttonLogin).setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_welcomeFragment_to_fragmentHome)
-        );
+
+        if(!userEmail.isEmpty() && !userPassword.isEmpty()){
+            view.findViewById(R.id.buttonLogin).setOnClickListener(
+                    Navigation.createNavigateOnClickListener(R.id.action_welcomeFragment_to_fragmentHome)
+            );
+        }
+
     }
 
     @Override
-    public void onClick(View v) {
-
+    public void onClick(View view) {
     }
 }

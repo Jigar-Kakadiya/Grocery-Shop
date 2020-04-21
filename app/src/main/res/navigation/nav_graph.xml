@@ -30,7 +30,11 @@
         android:id="@+id/signupFragment"
         android:name="com.ugwulo.groceryshop.SignupFragment"
         android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup"/>
+        tools:layout="@layout/fragment_signup">
+        <action
+            android:id="@+id/action_signupFragment_to_welcomeFragment"
+            app:popUpTo="@id/welcomeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentHome"
         android:name="com.ugwulo.groceryshop.FragmentHome"
@@ -39,6 +43,9 @@
         <action
             android:id="@+id/action_fragmentHome_to_orderFragment"
             app:destination="@id/orderFragment" />
+        <action
+            android:id="@+id/action_fragmentHome_to_welcomeFragment"
+            app:popUpTo="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
@@ -46,21 +53,21 @@
         android:label="fragment_order"
         tools:layout="@layout/fragment_order">
         <argument
+            android:name="item1"
+            app:argType="string"
+            android:defaultValue="Item Name" />
+        <argument
             android:name="price1"
-            app:argType="com.ugwulo.groceryshop.Item">
-        </argument>
+            app:argType="integer"
+            android:defaultValue="0" />
         <argument
             android:name="price2"
-            app:argType="com.ugwulo.groceryshop.Item">
-        </argument>
-        <argument
-            android:name="item1"
-            app:argType="com.ugwulo.groceryshop.Item">
-        </argument>
+            app:argType="integer"
+            android:defaultValue="0" />
         <argument
             android:name="item2"
-            app:argType="com.ugwulo.groceryshop.Item">
-        </argument>
+            app:argType="string"
+            android:defaultValue="Item Name" />
     </fragment>
 
 
