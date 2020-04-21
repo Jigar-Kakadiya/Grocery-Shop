@@ -44,29 +44,31 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
         navController = Navigation.findNavController(view);
         submitButton = view.findViewById(R.id.submit_btn);
         submitButton.setOnClickListener(this);
+
+//        Bundle bundle = new Bundle();
+//        bundle.putString("item1", "Carrot");
+//        bundle.putString("item2", "Carrot");
+//        bundle.putInt("price1", 45);
+//        bundle.putInt("price2", 45);
+////        Navigation.findNavController(view).navigate(R.id.action_fragmentHome_to_orderFragment, bundle);
+//
+//        item1 = editItem1.getText().toString();
+//        item2 = editItem2.getText().toString();
+//        price1 = Integer.parseInt(editPrice1.getText().toString());
+//        price2 = Integer.parseInt(editPrice2.getText().toString());
+
+
     }
 
     @Override
     public void onClick(View view) {
-        Bundle bundle = new Bundle();
-        bundle.putString("item1", "Carrot");
-        bundle.putString("item2", "Carrot");
-        bundle.putInt("price1", 45);
-        bundle.putInt("price2", 45);
-//        Navigation.findNavController(view).navigate(R.id.action_fragmentHome_to_orderFragment, bundle);
-
-        item1 = editItem1.getText().toString();
-        item2 = editItem2.getText().toString();
-        price1 = Integer.parseInt(editPrice1.getText().toString());
-        price2 = Integer.parseInt(editPrice2.getText().toString());
-
-       FragmentHomeDirections.ActionFragmentHomeToOrderFragment action = new FragmentHomeDirections.actionFragmentHomeToOrderFragment();
+        FragmentHomeDirections.ActionFragmentHomeToOrderFragment action = FragmentHomeDirections.actionFragmentHomeToOrderFragment();
 
 
-       Navigation.findNavController(view).navigate(action);
-       submitButton.setOnClickListener(
-              // Navigation.findNavController(view).navigate(R.id.action_fragmentHome_to_orderFragment, bundle)
-               Navigation.createNavigateOnClickListener(R.id.action_fragmentHome_to_orderFragment)
-       );
+        Navigation.findNavController(view).navigate(action);
+        submitButton.setOnClickListener(
+                // Navigation.findNavController(view).navigate(R.id.action_fragmentHome_to_orderFragment, bundle)
+                Navigation.createNavigateOnClickListener(R.id.action_fragmentHome_to_orderFragment)
+        );
     }
 }
