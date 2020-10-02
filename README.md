@@ -1,6 +1,6 @@
 <h1>Grocery-Shop</h1>
  
-<p>This is a Startng Task that tests my knowledge on navigation, views and intents in Android.<br>
+<p>This is a Starting Task that tests my knowledge on navigation, views and intents in Android.<br>
 I tried to implement the Google's Jetpack Navigation and Material Desing</p>
  
  ## You can explore  some of the screens 
